@@ -1,26 +1,45 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+
+  <div class="containers">
+    <sidebar @setArticle="setArticle" />
+    <articleItem :articleNumber="articleNumber" />
+    <tagsItem />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
+import sidebar from './components/sidebar.vue';
+import articleItem from './components/article.vue';
+import tagsItem from './components/tags.vue';
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  components: {sidebar, articleItem, tagsItem},
+
+  data() {
+    return {
+      articleNumber: null
+    }
+  },
+  methods: {
+    setArticle(articleNumber) {
+      console.log('event', articleNumber)
+      this.articleNumber = articleNumber
+    }
   }
 }
+
+
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.containers{
+  display: grid;
+  max-width: 1320px;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem 1rem;
+
+  margin: 0 auto;
+  margin-top: 35px;
 }
 </style>
