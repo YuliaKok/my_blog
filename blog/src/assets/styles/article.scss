@@ -1,0 +1,30 @@
+.wrapper-grid--item{
+    outline:1px solid black;
+    padding:10px;
+    }
+  
+  .left-side-bar .filter-current{
+      position:relative; 
+      padding:4px 6px; 
+  }
+  .left-side-bar .filter-current b{ 
+      position:absolute;
+      right:5px;
+      cursor:pointer; 
+      }
+  .left-side-bar .card ul.list-group li.list-group-item.item--active { 
+      background-color: #ffc107; 
+  }
+  .central-content .card{
+       display:none;
+       }
+  .central-content .card.card--active{
+       display:block; 
+      }
+  .central-content .card .card-footer .card-footer-grid{ 
+      display:grid;
+      grid-template-columns:1fr 1fr; 
+      justify-items:stretch; 
+      }
+  
+  

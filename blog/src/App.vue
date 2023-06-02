@@ -12,6 +12,8 @@
 import sidebar from './components/sidebar.vue';
 import articleItem from './components/article.vue';
 import tagsItem from './components/tags.vue';
+
+
 export default {
   components: {sidebar, articleItem, tagsItem},
 
@@ -24,8 +26,13 @@ export default {
     setArticle(articleNumber) {
       console.log('event', articleNumber)
       this.articleNumber = articleNumber
+      
+    
+
     }
   }
+
+
 }
 
 
@@ -33,6 +40,8 @@ export default {
 </script>
 
 <style>
+@import "../src/assets/styles/index.scss";
+
 .containers{
   display: grid;
   max-width: 1320px;

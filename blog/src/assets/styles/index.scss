@@ -1,0 +1,11 @@
+@import "./variables.scss";
+
+.containers{
+    display: grid;
+    max-width: 1320px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1rem 1rem;
+  
+    margin: 0 auto;
+    margin-top: 35px;
+  }
