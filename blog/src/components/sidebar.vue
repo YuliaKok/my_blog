@@ -3,13 +3,18 @@
     <div class="wrapper-grid--item left-side-bar">
         <div class="card">
             <h4 class="card-header text-uppercase">All posts:</h4>
-            <div class="filter-current bg-dark text-white d-none">Filter by: &nbsp;<code></code> <b>X</b></div>
+
+            <div v-if="tegName || authorName"  class="filter-current bg-dark text-white"> Filter by:
+                <span> s</span>
+                <button class="filter-current bg-dark text-white d-none" type="button" uk-close></button>
+            </div>
+
             <ul class="list-group">
                 <li 
-                    v-for="item in showTagAuthor" :key="item.article"  
+                    v-for="item in articles" :key="item.article"  
                     @click="selectArticle(item.article)" 
                     class="list-group-item item--active" >
-                        <a  class="d-block text-decoration-none text-black" href="#">Article - {{ item.article }}</a>
+                        <a  class="d-block text-decoration-none text-black" href="#">Article - {{ item.article }} </a>
                 </li>
             </ul>
         </div> 
@@ -20,75 +25,92 @@
 <script>
 export default {
   name: 'sidebar-articles',
-  props: {
-    msg: String
-  },
+  props: ['tegName', 'authorName'],
+
+  
 data(){
     return {
         showTagAuthor: [
         { 
             article:1, 
             tags:["News","Games"],
-            author:"John Smith J"
+            author:"By John Smith J"
         },
         { 
             article:2,
             tags:"Ecology",
-            author:"Nadin Johnsons"
+            author:"By Nadin Johnsons"
         },
         {
             article:3, 
             tags:["Ecology","Films"],
-            author:"Nadin Johnsons"
+            author:"By Nadin Johnsons"
         },
         { 
             article:4, 
             tags:["Games", "Games"],
-            author:"Kriss Kriss" 
+            author:"By Kriss Kriss" 
         },
         { 
             article:5, 
             tags:"News",
-            author:"Alex Batareikin"  
+            author:"By Alex Batareikin"  
         },
         { 
             article:6, 
             tags:["Ecology","News"],
-            author:"Nadin Johnsons" 
+            author:"By Nadin Johnsons" 
         },
         { 
             article:7,
             tags:"News",
-            author:"Alex Batareikin"
+            author:"By Alex Batareikin"
         },
         { 
             article:8, 
             tags:"Games",
-            author:"John Smith J"
+            author:"By John Smith J"
         },
         { 
             article:9, 
             tags:["News","Games"],
-            author:"Alex Batareikin" 
+            author:"By Alex Batareikin" 
         },
         { 
             article:10,
             tags:"Ecology",
-            author:"Kriss Kriss"
+            author:"By Kriss Kriss"
         },
         { 
             article:11,
             tags:"Films",
-            author:"Nadin Johnsons"
+            author:"By Nadin Johnsons"
         }
     ]
+    }
+},
+computed: {
+    articles() {
+        if(this.tegName) {
+            const arr = this.showTagAuthor.filter(item => item.tags.includes(this.tegName) || item.tags == this.tegName)
+            console.log('res', arr)
+            return arr
+        } else if(this.authorName) {
+            console.log(this.authorName)
+            const arr2 = this.showTagAuthor.filter(item => item.author == this.authorName)
+            console.log('res', arr2)
+            return arr2
+        } else return this.showTagAuthor
     }
 },
 methods: {
     selectArticle(number) {
         this.$emit('setArticle', number)
     }
-}
+},
+
+
+
 }
 
 </script>

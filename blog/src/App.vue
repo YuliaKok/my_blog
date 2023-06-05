@@ -1,9 +1,11 @@
 <template>
 
   <div class="containers">
-    <sidebar @setArticle="setArticle" />
-    <articleItem :articleNumber="articleNumber" />
-    <tagsItem />
+
+    <sidebar @setArticle="setArticle" :tegName="tegName" :authorName="authorName"/>
+    <articleItem :articleNumber="articleNumber" :tegName="tegName" :authorName="authorName" />
+    <tagsItem @setTags="giveTags" @setAuthors="giveAuthors" />
+
   </div>
 </template>
 
@@ -16,19 +18,26 @@ import tagsItem from './components/tags.vue';
 
 export default {
   components: {sidebar, articleItem, tagsItem},
-
   data() {
     return {
-      articleNumber: null
+      articleNumber: null,
+      tegName:null,
+      authorName:null,
+      
     }
   },
   methods: {
     setArticle(articleNumber) {
       console.log('event', articleNumber)
       this.articleNumber = articleNumber
-      
-    
-
+      },
+    giveTags(nameTag){
+        this.tegName = nameTag
+        console.log('child component said tags', nameTag)
+    },
+    giveAuthors(nameAuthor){
+      this.authorName = nameAuthor
+      console.log('child component said tags', nameAuthor)
     }
   }
 
@@ -51,4 +60,5 @@ export default {
   margin: 0 auto;
   margin-top: 35px;
 }
+
 </style>
