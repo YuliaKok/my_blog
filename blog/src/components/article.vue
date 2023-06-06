@@ -8,7 +8,8 @@
                            <span>Article Title - {{articleNumber}}: </span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Amet volutpat consequat mauris nunc congue nisi. Mi sit amet mauris commodo. Massa sed elementum tempus egestas sed. Dignissim sodales ut eu sem integer. <br><br>Ipsum consequat nisl vel pretium. Nunc vel risus commodo viverra maecenas accumsan. Aliquam etiam erat velit scelerisque in dictum non consectetur a. Imperdiet dui accumsan sit amet. Nibh nisl condimentum id venenatis a condimentum vitae. Est ultricies integer quis auctor elit sed vulputate.
                         </p>
                         <p class="card-author text-end">
-                            <span class="badge bg-secondary">{{getAuthorName()}}</span> <span class="author--cnt badge bg-secondary"></span>
+                            <span class="badge bg-secondary">{{getAuthorName()}}</span>
+                            <span class="author--cnt badge bg-secondary"> {{ articlesQtty }} </span>
                         </p>
                         <a href="#" class="btn text-uppercase">read more</a>
                     </div>
@@ -31,6 +32,7 @@ export default {
 
   data() {
     return {
+
         showImg: [
    { article:1, imgSrc: "../assets/img/photo-1.jpg", tags:["News","Games"], author:"By John Smith J" },
    { article:2, imgSrc:"../assets/img/photo-2.jpg",tags:"Ecology",author:"By Nadin Johnsons" },
@@ -43,6 +45,14 @@ export default {
    { article:9, imgSrc:"../assets/img/photo-9.jpg", tags:["News","Games"],author:"By Alex Batareikin" },
    { article:10, imgSrc:"../assets/img/photo-10.jpg", tags:"Ecology",author:"By Kriss Kriss"},
    { article:11, imgSrc:"../assets/img/photo-11.jpg",tags:"Films",author:"By Nadin Johnsons"}]
+    }
+  },
+  computed: {
+    articlesQtty() {
+        // console.log('name', this.authorName)
+        const result = this.showImg.filter(el => el.author == this.authorName)
+        console.log('res', result, result.length)
+        return result.length
     }
   },
   methods:{
@@ -60,8 +70,6 @@ export default {
             res = res.toString()
             return res
         } 
-
-       
     },
     getAuthorName(){
         let articleNumb;
@@ -72,7 +80,12 @@ export default {
             let res = (article.author)
             return res
         }
-    }
+    },
+    // getNumber(){
+    //     const result = this.showImg.filter((el) => {el.author == this.authorName})
+
+    //     return result.length
+    // }
 
   }
      
